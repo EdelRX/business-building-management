@@ -14,4 +14,5 @@ public class BusinessBuildRequest implements Serializable{
 	private Double budget;
 	private int horizontalCoord;
 	private int verticalCoord;
+	
 }
