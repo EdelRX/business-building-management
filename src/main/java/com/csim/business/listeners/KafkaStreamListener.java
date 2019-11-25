@@ -21,9 +21,6 @@ public class KafkaStreamListener {
 
 	@Autowired
 	BusinessService businessService;
-
-	@Autowired
-	BusinessItemReader businessItemReader;
 	
 	@Autowired
     JobLauncher jobLauncher;
@@ -32,10 +29,8 @@ public class KafkaStreamListener {
 	Job job;
 
 	@StreamListener(StreamBinder.INPUT)
-	public void process(BusinessBuildRequest businessBuildRequest) {
+	public void process(String event) {
 
-		businessItemReader.setBusinessBuildRequest(businessBuildRequest); //Setting the object to be read
-		businessItemReader.setBatchJobState(false); //Setting this to false so tht the reader will activate, see reader
 		log.info("Running job...");
 		try {
 			jobLauncher.run(job, new JobParameters());
